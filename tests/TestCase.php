@@ -2,9 +2,9 @@
 
 namespace Dietercoopman\Mailspfchecker\Tests;
 
+use Dietercoopman\Mailspfchecker\MailspfcheckerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Dietercoopman\Mailspfchecker\MailspfcheckerServiceProvider;
 
 class TestCase extends Orchestra
 {

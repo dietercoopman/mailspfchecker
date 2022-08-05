@@ -2,9 +2,9 @@
 
 namespace Dietercoopman\Mailspfchecker;
 
+use Dietercoopman\Mailspfchecker\Commands\MailspfcheckerCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use Dietercoopman\Mailspfchecker\Commands\MailspfcheckerCommand;
 
 class MailspfcheckerServiceProvider extends PackageServiceProvider
 {
