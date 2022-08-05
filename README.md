@@ -1,77 +1,60 @@
+![showsql](https://banners.beyondco.de/mailspfchecker.png?theme=light&packageManager=composer+require&packageName=dietercoopman%2Fmailspfchecker&pattern=architect&style=style_1&description=A+Laravel+package+to+check+if+your+application+can+send+e-mail+in+name+of+a+given+address.&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
+# A package to check if you can send e-mail through a given mailserver in name of a given e-mail address
 
-# :package_description
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/dietercoopman/mailspfchecker/run-tests?label=tests)](https://github.com/dietercoopman/mailspfchecker/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/dietercoopman/mailspfchecker/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/dietercoopman/mailspfchecker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+# Mail spf checker
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+A Laravel package to check if your application can send e-mail in name of a given address.
 
-## Support us
+## Use case
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+Most of the web applications are sending mails.  Mostly through a local mail server or an external mailing service.  
+When sending in name of a domain without using the legitimate mailserver of the domain it can get tricky.  
+Most of the time your mail ends up in a spam folder.  This can be solved by configuring a correct SPF record for the domain you are sending with.  This package
+gives you the possibility to check if you can send with a given from address using the mailserver specified in your mail config
+or a given mailserver.  It also gives the possibility to retrieve a dns txt record to configure your dns. 
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
+## Compatibility
 
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package can be installed in Laravel 6,7,8 and 9
 
 ## Installation
 
-You can install the package via composer:
-
-```bash
-composer require :vendor_slug/:package_slug
+```shell
+composer require dietercoopman/mailspfchecker
 ```
 
-You can publish and run the migrations with:
+## Examples
 
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+### Using the mailserver used by your application
+
+```php 
+
+    if ($mailService->canISendAs("hello@dietse.dev")) {
+        // the happy path
+    } else {
+        // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
+        echo $mailService->howCanISendAs("hello@dietse.be");
+        // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:#.#.#.# -all
+    }
 ```
 
-You can publish the config file with:
+### Using a given mailserver
 
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
+```php 
 
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
-
-## Usage
-
-```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
-```
-
-## Testing
-
-```bash
-composer test
+    if ($mailService->using('smtp.mandrill.com')->canISendAs("hello@dietse.dev")) {
+        // the happy path
+    } else {
+        // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
+        echo $mailService->using('smtp.mandrill.com')->howCanISendAs("hello@dietse.be");
+        // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:spf.mandrill.com -all
+    }
 ```
 
 ## Changelog
@@ -80,7 +63,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 
 ## Contributing
 
-Please see [CONTRIBUTING](https://github.com/:author_username/.github/blob/main/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
@@ -88,7 +71,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Dieter Coopman](https://github.com/dietercoopman)
 - [All Contributors](../../contributors)
 
 ## License
