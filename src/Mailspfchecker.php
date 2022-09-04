@@ -8,7 +8,7 @@ use SPFLib\Term\Mechanism;
 
 class Mailspfchecker
 {
-    private array  $spfRecords = [];
+    private array $spfRecords = [];
 
     private string $server = '';
 
@@ -139,7 +139,12 @@ class Mailspfchecker
                 }
             }
         } else {
-            $record->addTerm(new Mechanism\Ip4Mechanism(Mechanism::QUALIFIER_PASS, IPv4::parseString(gethostbyname($this->sendingMailserver))));
+            $server = gethostbyname($this->sendingMailserver);
+            if (filter_var($server, FILTER_VALIDATE_IP)) {
+                $record->addTerm(new Mechanism\Ip4Mechanism(Mechanism::QUALIFIER_PASS, IPv4::parseString($server)));
+            } else {
+                $record->addTerm(new Mechanism\IncludeMechanism(Mechanism::QUALIFIER_PASS, $server));
+            }
         }
 
         $record->addTerm(new Mechanism\AllMechanism(Mechanism::QUALIFIER_FAIL));
