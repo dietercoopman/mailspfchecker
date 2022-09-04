@@ -1,6 +1,6 @@
 ![showsql](https://banners.beyondco.de/mailspfchecker.png?theme=light&packageManager=composer+require&packageName=dietercoopman%2Fmailspfchecker&pattern=architect&style=style_1&description=A+Laravel+package+to+check+if+your+application+can+send+e-mail+in+name+of+a+given+address.&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
-# A package to check if you can send e-mail through a given mailserver in name of a given e-mail address
+# A Laravel package to check if you can send e-mail through a given mailserver in name of a given e-mail address
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
 [![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/dietercoopman/mailspfchecker/run-tests?label=tests)](https://github.com/dietercoopman/mailspfchecker/actions?query=workflow%3Arun-tests+branch%3Amain)
@@ -35,11 +35,11 @@ composer require dietercoopman/mailspfchecker
 
 ```php 
 
-    if ($mailService->canISendAs("hello@dietse.dev")) {
+    if ($mailSpfChecker->canISendAs("hello@dietse.dev")) {
         // the happy path
     } else {
         // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
-        echo $mailService->howCanISendAs("hello@dietse.be");
+        echo $mailSpfChecker->howCanISendAs("hello@dietse.be");
         // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:#.#.#.# -all
     }
 ```
@@ -48,11 +48,11 @@ composer require dietercoopman/mailspfchecker
 
 ```php 
 
-    if ($mailService->using('smtp.mandrill.com')->canISendAs("hello@dietse.dev")) {
+    if ($mailSpfChecker->using('smtp.mandrill.com')->canISendAs("hello@dietse.dev")) {
         // the happy path
     } else {
         // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
-        echo $mailService->using('smtp.mandrill.com')->howCanISendAs("hello@dietse.be");
+        echo $mailSpfChecker->using('smtp.mandrill.com')->howCanISendAs("hello@dietse.be");
         // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:spf.mandrill.com -all
     }
 ```
