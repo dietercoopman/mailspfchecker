@@ -21,7 +21,9 @@
         "mlocati/spf-lib": "^3.1"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.15"
+        "orchestra/testbench": "^6.15",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1"
     },
     "autoload": {
         "psr-4": {
