@@ -39,7 +39,7 @@ composer require dietercoopman/mailspfchecker
         // the happy path
     } else {
         // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
-        echo $mailSpfChecker->howCanISendAs("hello@dietse.be");
+        echo $mailSpfChecker->howCanISendAs("hello@dietse.dev");
         // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:#.#.#.# -all
     }
 ```
@@ -52,7 +52,7 @@ composer require dietercoopman/mailspfchecker
         // the happy path
     } else {
         // you can not send e-mail in name of hello@dietse.dev, but I can tell you what to do  
-        echo $mailSpfChecker->using('smtp.mandrill.com')->howCanISendAs("hello@dietse.be");
+        echo $mailSpfChecker->using('smtp.mandrill.com')->howCanISendAs("hello@dietse.dev");
         // Generate a txt-record with a name of dietse.dev and the value v=spf1 ip4:spf.mandrill.com -all
     }
 ```
