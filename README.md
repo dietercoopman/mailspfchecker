@@ -3,8 +3,6 @@
 # A Laravel package to check if you can send e-mail through a given mailserver in name of a given e-mail address
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/dietercoopman/mailspfchecker/run-tests?label=tests)](https://github.com/dietercoopman/mailspfchecker/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/dietercoopman/mailspfchecker/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/dietercoopman/mailspfchecker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
 
 # Mail spf checker
