@@ -21,7 +21,7 @@ or a given mailserver.  It also gives the possibility to retrieve a dns txt reco
 
 ## Compatibility
 
-This package can be installed in Laravel 6,7,8 and 9
+This package can be installed in Laravel 6,7,8,9 and 10
 
 ## Installation
 
