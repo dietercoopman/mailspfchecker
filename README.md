@@ -1,9 +1,9 @@
 ![showsql](https://banners.beyondco.de/mailspfchecker.png?theme=light&packageManager=composer+require&packageName=dietercoopman%2Fmailspfchecker&pattern=architect&style=style_1&description=A+Laravel+package+to+check+if+your+application+can+send+e-mail+in+name+of+a+given+address.&md=1&showWatermark=1&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
-# A Laravel package to check if you can send e-mail through a given mailserver in name of a given e-mail address
-
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
 [![Total Downloads](https://img.shields.io/packagist/dt/dietercoopman/mailspfchecker.svg?style=flat-square)](https://packagist.org/packages/dietercoopman/mailspfchecker)
+
+# A Laravel package to check if you can send e-mail through a given mailserver in name of a given e-mail address
 
 # Mail spf checker
 
