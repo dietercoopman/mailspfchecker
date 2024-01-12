@@ -116,7 +116,7 @@ class Mailspfchecker
         return array_unique($spfRecords);
     }
 
-    public function howCanISendAs(string $emailOrDomain, string $overRuleMessage = null): string
+    public function howCanISendAs(string $emailOrDomain, ?string $overRuleMessage = null): string
     {
         [$name, $value] = array_values($this->buildDnsString($emailOrDomain));
         if ($overRuleMessage) {
