@@ -102,11 +102,13 @@ class Mailspfchecker
             $domain = implode('.', $explodedServerUrl);
             if ($domain) {
                 $record = $checker->getRecordFromDomain($domain);
-                foreach ($record->getTerms() as $term) {
-                    if ($term instanceof Mechanism\IncludeMechanism || $term instanceof Mechanism\AMechanism) {
-                        $domainSpec = (string) $term->getDomainSpec();
-                        if (strstr($domainSpec, $domain)) {
-                            $spfRecords[] = $domainSpec;
+                if($record) {
+                    foreach ($record->getTerms() as $term) {
+                        if ($term instanceof Mechanism\IncludeMechanism || $term instanceof Mechanism\AMechanism) {
+                            $domainSpec = (string)$term->getDomainSpec();
+                            if (strstr($domainSpec, $domain)) {
+                                $spfRecords[] = $domainSpec;
+                            }
                         }
                     }
                 }
