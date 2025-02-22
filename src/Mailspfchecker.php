@@ -46,7 +46,7 @@ class Mailspfchecker
     public function check(string $emailOrDomain, $returnCode = false): mixed
     {
         $domain = $this->getDomain($emailOrDomain);
-        $decoder = new \SPFLib\Decoder();
+        $decoder = new \SPFLib\Decoder;
 
         $code = 'error';
         $codes = [];
@@ -81,7 +81,7 @@ class Mailspfchecker
             $sendingMailserver = config('mail.mailers.smtp.host');
         }
 
-        //if the address is localhost, then check wan address via icanhazip
+        // if the address is localhost, then check wan address via icanhazip
         if ($sendingMailserver == '127.0.0.1' || $sendingMailserver == 'localhost') {
             $sendingMailserver = trim(file_get_contents('https://icanhazip.com/'));
         }
@@ -96,7 +96,7 @@ class Mailspfchecker
         $server = $this->sendingMailserver;
 
         if (! filter_var($server, FILTER_VALIDATE_IP)) {
-            $checker = new Decoder();
+            $checker = new Decoder;
             $explodedServerUrl = explode('.', $server);
             array_shift($explodedServerUrl);
             $domain = implode('.', $explodedServerUrl);
@@ -131,7 +131,7 @@ class Mailspfchecker
     public function buildDnsString(string $emailOrDomain): array
     {
         $domain = $this->getDomain($emailOrDomain);
-        $record = new \SPFLib\Record();
+        $record = new \SPFLib\Record;
         if (! empty($this->spfRecords)) {
             foreach ($this->spfRecords as $server) {
                 if (filter_var($server, FILTER_VALIDATE_IP)) {
